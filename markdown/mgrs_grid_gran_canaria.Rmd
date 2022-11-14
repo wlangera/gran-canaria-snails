@@ -195,3 +195,19 @@ base_plot +
   geom_sf_text(data = gran_canaria_grid_10km, aes(label = tag), size = 2.5) +
   coord_sf(datum = proj_crs)
 ```
+
+
+# Output
+
+We export the grids as .shp-files.
+
+```{r}
+st_write(gran_canaria_grid_1km, paste(out_path, "gran_canaria_grid_1km.shp", 
+                                      sep = "/"), delete_dsn = TRUE)
+st_write(gran_canaria_grid_2km, paste(out_path, "gran_canaria_grid_2km.shp", 
+                                      sep = "/"), delete_dsn = TRUE)
+st_write(gran_canaria_grid_5km, paste(out_path, "gran_canaria_grid_5km.shp", 
+                                      sep = "/"), delete_dsn = TRUE)
+st_write(gran_canaria_grid_10km, paste(out_path, "gran_canaria_grid_10km.shp", 
+                                      sep = "/"), delete_dsn = TRUE)
+```
