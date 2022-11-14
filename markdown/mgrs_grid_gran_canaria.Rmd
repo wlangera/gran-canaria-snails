@@ -36,6 +36,7 @@ We first read in the map of Gran Canaria and set project crs to UTM zone 28R.
 # Location of data en output folders
 data_path <- here("data", "raw")
 out_path <- here("data", "processed")
+source_path <- here("src")
 
 # Reference coordinate system: UTM zone 28R
 proj_utm_zone <- "28R"
@@ -75,6 +76,10 @@ We create a reference grid following the [Military Grid Reference System (MGRS)]
 -numerical location with precision: 10 km (1+1 digits), 1 km (2+2 digits), 100 m (3+3 digits), 10 m (4+4 digits) or 1 m (5+5 digits)
 
 We created 3 functions to make grids on 1, 2, 5 and 10 km scales with MGRS coordinates/grid references for each cell. The functions work for all polygons in the northern hemisphere (not near the poles) which are confined to a single UTM zone. The functions can be found in the script *create_mgrs_grid.R*.
+
+```{r}
+source(paste(source_path, "create_mgrs_grid.R", sep = "/"))
+```
 
 `tag_grid_mgrs()` is a helper function to provide the MGRS coordinates/grid references (further called 'tags') for each cell in a grid with precision 1 or 10 km. The first part of the tag for a grid cell is the UTM zone (in our case `r proj_utm_zone`). 
 
