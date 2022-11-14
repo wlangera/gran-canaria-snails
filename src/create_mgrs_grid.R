@@ -9,7 +9,7 @@
 
 
 #############################################################################
-#tag_grid_mgrs() is a helper function to provide the MGRS coordinates/grid 
+# tag_grid_mgrs() is a helper function to provide the MGRS coordinates/grid 
 # references (further called 'tags') for each cell in a grid with precision 1 
 # or 10 km.
 #############################################################################
@@ -150,3 +150,64 @@ tag_grid_mgrs <- function(utm_centroids, size, utm_zone, mgrs_scheme = "AL") {
   
   return(tag_df$mgrs_tag)
 }
+
+
+#############################################################################
+# The helper function `make_grid_base()` creates a  1 or 10 km grid over the 
+# polygon and uses `tag_grid_mgrs()` for to provide each cell with a unique 
+# MGRS grid reference.
+#############################################################################
+
+make_grid_base <- function(size, map, utm_zone, mgrs_scheme = "AL") {
+  # Error handling
+  if (!(size %in% c(1, 10))) {
+    stop("Grid size needs to be 1 or 10 (kilometers)!")
+  }
+  
+  if (!("sf" %in% class(map))) {
+    stop("Map needs to be of class sf!")
+  }
+  
+  if (!(mgrs_scheme %in% c("AA", "AL"))) {
+    stop("Choose MGRS scheme AA or AL!")
+  }
+  suppressWarnings({
+    
+    # Set offset so the grids are aligned with the crs
+    ## Round minimum down to 10 kilometers
+    offset <- st_bbox(map)[1:2] - st_bbox(map)[1:2] %% 10000
+    names(offset) <- NULL
+    
+    # Create full grid over the span of the map
+    ## Convert size to meters
+    large_grid <- map %>%
+      st_make_grid(cellsize = size * 1000, offset = offset) %>%
+      st_as_sf() %>%
+      mutate(id = row_number())
+    
+    # Get ids of grids that actually overlap with map
+    intersect_ids <- large_grid %>%
+      st_intersection(map) %>%
+      pull(id)
+    
+    # Filter grids of large grid that overlap based intersecting ids
+    small_grid <- large_grid %>% 
+      filter(id %in% intersect_ids)
+    
+    # Calculate MGRS
+    ## Calculate central UTM-coordinates of each grid
+    utm_centroids <- small_grid %>%
+      st_centroid() %>%
+      st_coordinates() %>%
+      as_tibble()
+    
+    ## Add tags to grid
+    grid_final <- cbind(small_grid, 
+                        tag = tag_grid_mgrs(utm_centroids, size, utm_zone,
+                                            mgrs_scheme))
+    
+    # Return
+    return(grid_final)
+  })
+}
+
