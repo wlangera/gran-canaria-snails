@@ -46,3 +46,20 @@ gran_canaria <- st_read(paste(data_path, "GranCanaria.shp", sep = "/"))
 # Set project crs
 gran_canaria <- st_transform(gran_canaria, crs = proj_crs)
 ```
+
+The map looks as follows:
+
+```{r}
+# Create theme for plotting map
+mytheme <- theme(panel.grid.major = element_line(color = "grey", 
+                                                 linetype = "dashed", 
+                                                 size = 0.3),
+                 panel.background = element_rect(fill = "aliceblue"),
+                 axis.title = element_blank())
+
+base_plot <- gran_canaria %>%
+  ggplot() +
+    geom_sf(fill = "khaki3") +
+    mytheme
+base_plot
+```
