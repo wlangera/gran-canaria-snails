@@ -211,3 +211,84 @@ make_grid_base <- function(size, map, utm_zone, mgrs_scheme = "AL") {
   })
 }
 
+
+#############################################################################
+# The final function `make_grid_mgrs()` creates a 1, 2, 5 or 10 km grid over 
+# the polygon. For 1 and 10 km it simply uses `make_grid_base()`. For 2 and 
+# 5 km we need unique MGRS grid references as well. We start from a 10 km grid 
+# and divide this in resp. 5 x 5 and 2 x 2  squares.
+#############################################################################
+
+make_grid_mgrs <- function(size, map, utm_zone, mgrs_scheme = "AL") {
+  # Error handling
+  if (!(size %in% c(1, 2, 5, 10))) {
+    stop("Grid size needs to be 1, 2, 5 or 10 (kilometers)!")
+  }
+  
+  if (!("sf" %in% class(map))) {
+    stop("Map needs to be of class sf!")
+  }
+  
+  if (!(mgrs_scheme %in% c("AA", "AL"))) {
+    stop("Choose MGRS scheme AA or AL!")
+  }
+  suppressWarnings({
+    
+    # Return for sizes 1 and 10
+    if (size == 1) {return(make_grid_base(1, map, utm_zone))}
+    
+    grid_10km <- make_grid_base(10, map, utm_zone)
+    if (size == 10) {return(grid_10km)}
+    
+    # Set offset so the grids are aligned with the crs
+    ## Round minimum down to 10 kilometers
+    offset <- st_bbox(map)[1:2] - st_bbox(map)[1:2] %% 10000
+    names(offset) <- NULL
+    
+    ## Convert size to meters
+    ## Set offset so the grids are aligned with the crs
+    large_grid <- grid_10km %>%
+      st_make_grid(cellsize = size * 1000, offset = offset) %>%
+      st_as_sf() %>%
+      mutate(id = row_number())
+    
+    # Calculate MGRS
+    ## Calculate central UTM-coordinates of each grid
+    utm_centroids <- large_grid %>%
+      st_centroid() %>%
+      st_coordinates() %>%
+      as_tibble()
+    
+    ## Add tags to grid
+    if (size == 5) {
+      suffices <- c("C", "D", "A", "B")
+      large_grid_tagged <- cbind(large_grid, 
+                                 tag = tag_grid_mgrs(utm_centroids, size, 
+                                                     utm_zone, mgrs_scheme)) %>% 
+        arrange(tag, id) %>% 
+        group_by(tag) %>%
+        mutate(tag = paste0(tag, suffices))
+    } else {
+      suffices <- paste0(rep(seq(0, 8, by = 2), 5), 
+                         rep(seq(0, 8, by = 2), each = 5))
+      large_grid_tagged <- cbind(large_grid, 
+                                 tag = tag_grid_mgrs(utm_centroids, size, 
+                                                     utm_zone, mgrs_scheme)) %>% 
+        arrange(tag, id) %>% 
+        group_by(tag) %>%
+        mutate(tag = paste0(tag, "_", suffices)) 
+    }
+    
+    # Get ids of grids that actually overlap with map
+    intersect_ids <- large_grid_tagged %>%
+      st_intersection(map) %>%
+      pull(id)
+    
+    # Filter grids of large grid that overlap based intersecting ids
+    grid_final <- large_grid_tagged %>% 
+      filter(id %in% intersect_ids)
+    
+    # Return
+    return(grid_final)
+  })
+}
