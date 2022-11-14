@@ -96,3 +96,102 @@ The helper function `make_grid_base()` creates a  1 or 10 km grid over the polyg
 
 The final function `make_grid_mgrs()` creates a 1, 2, 5 or 10 km grid over the polygon. For 1 and 10 km it simply uses `make_grid_base()`. For 2 and 5 km we need unique MGRS grid references as well. We start from a 10 km grid and divide this in resp. 5 x 5 and 2 x 2  squares. The 25 2 km grid cells are labeled as the 10 km grid cells with addition of an underscore (_) and 1 + 1 digits 0X to 8X by 2 from eastern edge of the 10 km square, X0 to X8 by 2 from the bottom edge of the square. The bottom left square in the 10 km grid 28RDR38 is for example 28RDR38_00. For the 4 5 km grids we simply add the lables A-D from east to west and from north to south. The bottom left square in the 10 km grid 28RDR38 is for example 28RDR38C.
 
+
+# Results
+
+```{r}
+gran_canaria_grid_1km <- make_grid_mgrs(1, gran_canaria, proj_utm_zone)
+gran_canaria_grid_2km <- make_grid_mgrs(2, gran_canaria, proj_utm_zone)
+gran_canaria_grid_5km <- make_grid_mgrs(5, gran_canaria, proj_utm_zone)
+gran_canaria_grid_10km <- make_grid_mgrs(10, gran_canaria, proj_utm_zone)
+```
+
+We plot the calculated grid:
+
+```{r}
+# 1 km
+base_plot +
+  geom_sf(data = gran_canaria_grid_1km, fill = alpha("white", 0), 
+          colour = "black") +
+  labs(title = "UTM 1 km grid")
+
+# 2 km
+base_plot +
+  geom_sf(data = gran_canaria_grid_2km, fill = alpha("white", 0), 
+          colour = "black") +
+  labs(title = "UTM 2 km grid")
+
+# 5 km
+base_plot +
+  geom_sf(data = gran_canaria_grid_5km, fill = alpha("white", 0), 
+          colour = "black") +
+  labs(title = "UTM 5 km grid")
+
+# 10 km
+base_plot +
+  geom_sf(data = gran_canaria_grid_10km, fill = alpha("white", 0), 
+          colour = "black") +
+  labs(title = " UTM 10 km grid")
+```
+
+We can check the tags visually. In red the 10 km grid to compare.
+
+```{r}
+# 1 km
+gran_canaria_grid_1km_subset <- gran_canaria_grid_1km %>%
+  filter(str_detect(tag, "28RDS3[0-9]1[0-9]"))
+gran_canaria_grid_10km_subset <- gran_canaria_grid_10km %>%
+  filter(tag == "28RDS31")
+  
+base_plot +
+  geom_sf(data = gran_canaria_grid_1km_subset, fill = alpha("white", 0), 
+          colour = "black") +
+  geom_sf(data = gran_canaria_grid_10km_subset, fill = alpha("white", 0), 
+          colour = "red", size = 1) +
+  labs(title = "UTM 1 km grid") +
+  geom_sf_text(data = gran_canaria_grid_1km_subset, aes(label = tag), 
+               size = 1.5) +
+  geom_sf_text(data = gran_canaria_grid_10km_subset, aes(label = tag), 
+               size = 3, colour = "red", nudge_x = -2500, nudge_y = 4000) +
+  coord_sf(datum = proj_crs, 
+           xlim = st_bbox(gran_canaria_grid_10km_subset)[c(1, 3)],
+           ylim = st_bbox(gran_canaria_grid_10km_subset)[c(2, 4)])
+
+# 2 km
+gran_canaria_grid_2km_subset <- gran_canaria_grid_2km %>%
+  filter(str_detect(tag, "28RDS31"))
+  
+base_plot +
+  geom_sf(data = gran_canaria_grid_2km_subset, fill = alpha("white", 0), 
+          colour = "black") +
+  geom_sf(data = gran_canaria_grid_10km_subset, fill = alpha("white", 0), 
+          colour = "red", size = 1) +
+  labs(title = "UTM 2 km grid") +
+  geom_sf_text(data = gran_canaria_grid_2km_subset, aes(label = tag), 
+               size = 1.5) +
+  geom_sf_text(data = gran_canaria_grid_10km_subset, aes(label = tag), 
+               size = 3, colour = "red", nudge_x = -2500, nudge_y = 4000) +
+  coord_sf(datum = proj_crs, 
+           xlim = st_bbox(gran_canaria_grid_10km_subset)[c(1, 3)],
+           ylim = st_bbox(gran_canaria_grid_10km_subset)[c(2, 4)])
+
+# 5 km
+base_plot +
+  geom_sf(data = gran_canaria_grid_5km, fill = alpha("white", 0), 
+          colour = "black") +
+  geom_sf(data = gran_canaria_grid_10km, fill = alpha("white", 0), 
+          colour = "red", size = 1) +
+  labs(title = "UTM 5 km grid") +
+  geom_sf_text(data = gran_canaria_grid_5km, aes(label = tag), size = 1.5) +
+  geom_sf_text(data = gran_canaria_grid_10km, aes(label = tag), size = 1.5,
+               colour = "red", nudge_x = -2500, nudge_y = 4000) +
+  coord_sf(datum = proj_crs)
+
+# 10 km
+base_plot +
+  geom_sf(data = gran_canaria_grid_10km, fill = alpha("white", 0), 
+          colour = "black") +
+  labs(title = " UTM 10 km grid") +
+  geom_sf_text(data = gran_canaria_grid_10km, aes(label = tag), size = 2.5) +
+  coord_sf(datum = proj_crs)
+```
