@@ -27,6 +27,7 @@ library(tidyverse)     # Easy data prep, cleaning and visualization
 library(sf)            # Work with simple features
 ```
 
+
 # Data preparation
 
 We first read in the map of Gran Canaria and set project crs to UTM zone 28R.
@@ -63,3 +64,30 @@ base_plot <- gran_canaria %>%
     mytheme
 base_plot
 ```
+
+
+# Functions
+
+We create a reference grid following the [Military Grid Reference System (MGRS)](https://en.wikipedia.org/wiki/Military_Grid_Reference_System) which is derived from the [Universal Transverse Mercator (UTM) grid system](https://en.wikipedia.org/wiki/Universal_Transverse_Mercator_coordinate_system). An an MGRS coordinate, or grid reference consists of 3 parts:  
+
+-grid zone designator (UTM zone)
+-100,000 meter square identifier (2 letters)
+-numerical location with precision: 10 km (1+1 digits), 1 km (2+2 digits), 100 m (3+3 digits), 10 m (4+4 digits) or 1 m (5+5 digits)
+
+We created 3 functions to make grids on 1, 2, 5 and 10 km scales with MGRS coordinates/grid references for each cell. The functions work for all polygons in the northern hemisphere (not near the poles) which are confined to a single UTM zone. The functions can be found in the script *create_mgrs_grid.R*.
+
+`tag_grid_mgrs()` is a helper function to provide the MGRS coordinates/grid references (further called 'tags') for each cell in a grid with precision 1 or 10 km. The first part of the tag for a grid cell is the UTM zone (in our case `r proj_utm_zone`). 
+
+The second part is the 100,000-meter square identification. Each UTM zone is divided into 100,000 meter squares, so that their corners have UTM-coordinates that are multiples of 100,000 meters. The identification consists of a column letter (A–Z, omitting I and O) followed by a row letter (A–V, omitting I and O). Near the equator, the columns of UTM zone 1 have the letters A–H, the columns of UTM zone 2 have the letters J–R (omitting O), and the columns of UTM zone 3 have the letters S–Z. At zone 4, the column letters start over from A, and so on around the world. For the row letters, there are two alternative lettering schemes within MGRS:  
+
+- AA scheme (MGRS-New): the letter for the first row just north of the equator is A in odd-numbered zones, and F in even-numbered zones
+- AL scheme (MGRS-Old): row letters are shifted 10 steps in the alphabet. The letter for the first row is L in odd-numbered zones and R in even-numbered zones.
+
+We will follow by default the AL scheme but the function can also accept the AA scheme with option `mgrs_scheme = "AA"`.
+
+The grid is now identifiable on 100 km² scale. For grids on 10 km precision the numerical location is given within a 100,000 meter square as 1 + 1 digits the first digit is the easting in meters measured from the left edge of the square and the northing in meters measured from the bottom edge of the square. For 1 km precision this is the same but with 2 + 2 digits. How this is adjusted for 2 and 5 km grid squares will be explained further on.
+
+The helper function `make_grid_base()` creates a  1 or 10 km grid over the polygon and uses `tag_grid_mgrs()` for to provide each cell with a unique MGRS grid reference.
+
+The final function `make_grid_mgrs()` creates a 1, 2, 5 or 10 km grid over the polygon. For 1 and 10 km it simply uses `make_grid_base()`. For 2 and 5 km we need unique MGRS grid references as well. We start from a 10 km grid and divide this in resp. 5 x 5 and 2 x 2  squares. The 25 2 km grid cells are labeled as the 10 km grid cells with addition of an underscore (_) and 1 + 1 digits 0X to 8X by 2 from eastern edge of the 10 km square, X0 to X8 by 2 from the bottom edge of the square. The bottom left square in the 10 km grid 28RDR38 is for example 28RDR38_00. For the 4 5 km grids we simply add the lables A-D from east to west and from north to south. The bottom left square in the 10 km grid 28RDR38 is for example 28RDR38C.
+
