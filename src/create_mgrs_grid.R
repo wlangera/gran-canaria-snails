@@ -1,4 +1,14 @@
 #############################################################################
+#############################################################################
+## 3 functions to make grids on 1, 2, 5 and 10 km scales with MGRS         ##
+## coordinates/grid references for each cell. The functions work for all   ##
+## polygons in the northern hemisphere (not near the poles) which are      ##
+## confined to a single UTM zone.                                          ##
+#############################################################################
+#############################################################################
+
+
+#############################################################################
 #tag_grid_mgrs() is a helper function to provide the MGRS coordinates/grid 
 # references (further called 'tags') for each cell in a grid with precision 1 
 # or 10 km.
