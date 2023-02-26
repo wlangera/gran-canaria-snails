@@ -35,7 +35,7 @@ We first read in the map of Gran Canaria and set project crs to UTM zone 28R.
 # Location of data en output folders
 data_path <- here("data", "raw")
 out_path <- here("data", "processed")
-source_path <- here("src")
+source_path <- here("src", "R")
 
 # Reference coordinate system: UTM zone 28R
 proj_utm_zone <- "28R"
