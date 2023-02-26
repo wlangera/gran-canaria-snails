@@ -19,7 +19,7 @@ The analysis code is stored in markdown `.Rmd` files assisted with separate `.R`
 │
 ├── data
 │   ├── raw                    : Source data
-│   └── processed              : Data after processing trough script
+│   └── processed              : Data after processing through script
 │
 └── src
     ├── R                      : R scripts with helper functions
