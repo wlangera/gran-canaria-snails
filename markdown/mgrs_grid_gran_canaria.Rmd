@@ -2,8 +2,7 @@
 title: "Create reference grid Gran Canaria"
 author: "Ward Langeraert"
 date: "`r Sys.Date()`"
-output: 
-  
+output:
   html_document:
       code_folding: hide
       toc: true
@@ -43,7 +42,8 @@ proj_utm_zone <- "28R"
 proj_crs <- 32628
 
 # Read layers
-gran_canaria <- st_read(paste(data_path, "GranCanaria.shp", sep = "/"))
+gran_canaria <- st_read(paste(data_path, "GranCanaria.shp", sep = "/"),
+                        quiet = TRUE)
 
 # Set project crs
 gran_canaria <- st_transform(gran_canaria, crs = proj_crs)
@@ -71,9 +71,9 @@ base_plot
 
 We create a reference grid following the [Military Grid Reference System (MGRS)](https://en.wikipedia.org/wiki/Military_Grid_Reference_System) which is derived from the [Universal Transverse Mercator (UTM) grid system](https://en.wikipedia.org/wiki/Universal_Transverse_Mercator_coordinate_system). An an MGRS coordinate, or grid reference consists of 3 parts:  
 
--grid zone designator (UTM zone)
--100,000 meter square identifier (2 letters)
--numerical location with precision: 10 km (1+1 digits), 1 km (2+2 digits), 100 m (3+3 digits), 10 m (4+4 digits) or 1 m (5+5 digits)
+- grid zone designator (UTM zone)
+- 100,000 meter square identifier (2 letters)
+- numerical location with precision: 10 km (1+1 digits), 1 km (2+2 digits), 100 m (3+3 digits), 10 m (4+4 digits) or 1 m (5+5 digits)
 
 We created 3 functions to make grids on 1, 2, 5 and 10 km scales with MGRS coordinates/grid references for each cell. The functions work for all polygons in the northern hemisphere (not near the poles) which are confined to a single UTM zone. The functions can be found in the script *create_mgrs_grid.R*.
 
