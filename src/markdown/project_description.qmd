@@ -61,7 +61,7 @@ wp_df <- data.frame(
                   ".", unlist(lapply(tasks_per_wp, seq_len))),
   task = c("Create questionaire for contributers and interested parties", 
            "Make dataset of contributer details", 
-           "Expected and possible outcomes", 
+           "List of expected and possible outcomes", 
            "dataset", "zotero", "literature study",
            "photos", "data management plan", "data quality",
            "species list", "synonyms", "morphology", "ecology", "literature", 
@@ -73,7 +73,7 @@ wp_df |>
   kable_classic(full_width = F, html_font = "Cambria")
 ```
 
-# WP1: Communication and networking
+# WP1: Communication and networking {#sec-WP1}
 
 ## Task 1.1 Create questionaire for contributers and interested parties {#sec-task1_1}
 
@@ -86,29 +86,34 @@ The questionaire will be created with [Google Forms](https://www.google.com/intl
 To keep of track of everyone who has contributed in the past or wants to contribute in the future, the data from [task 1.1](#sec-task1_1) should be stored in a clean dataset. This to ensure that everyone gets the recognition they deserve even if it happened a long time ago.  
 The dataset will be created with [Google Sheets](https://www.google.com/sheets/about/).
 
-## Task 1.3 Expected and possible outcomes
+## Task 1.3 List of expected and possible outcomes
 
 There are three categories of possible outputs for this project.
 
 1. Separate scientific papers
 2. Full scale report
-3. Miscellaneous
-   - Website
-   - Blog
-   - ...
+3. Website
 
 ### Separate scientific papers
 
-Papers on specific discoveries can be published in malacological journals. These would be mainly ancillary papers related to the project, but not essential to the main goals. [Elona](https://elona-journal-malacology.blogspot.com/) is a digital journal on marine and continental Malacology in the Iberian Peninsula. The [Iberus](https://www.soesma.es/publicaciones/) journal of the Sociedad Española de Malacología and the Instituto Português de Malacologia. Any other non-Spanish journal is also an option (e.g. [Basteria](https://www.spirula.nl/basteria-engels/)). These papers will be written according to the guidelines of the intended journal.
+Papers on specific discoveries or topics can be published in malacological journals. These would be mainly ancillary papers related to the project, but not essential to the main goals. [Elona](https://elona-journal-malacology.blogspot.com/) is a digital journal on marine and continental Malacology in the Iberian Peninsula. The [Iberus](https://www.soesma.es/publicaciones/) journal of the Sociedad Española de Malacología and the Instituto Português de Malacologia. Any other non-Spanish journal is also an option (e.g. [Basteria](https://www.spirula.nl/basteria-engels/)).  
+These papers will be written according to the guidelines of the intended journal.
 
 ### Full scale report
 
-A comprehensive report would be the main output of the project. More specifically, these 
+A comprehensive report would be the main output of the project. More specifically, there would be two main reports.
 
-### Miscellaneous
+1. Literature study (@sec-WP2)
+2. Species descriptions (@sec-WP4)
 
+These will be written as HTML [Quarto Books](https://quarto.org/docs/books/) in RStudio [@RStudio2022]. This creates a very flexible output format for future adaptations especially in combination with version control (@sec-WP4).  
+These reports could be published as books, scientific papers or on a website (see further).
 
-# WP2: Literature study
+### Website
+
+Essentially, HTML books are a specific form of [Quarto Websites](https://quarto.org/docs/websites/), meaning that they have the same capabilities as regular websites. There are several possibilities to publish Quarto Websites (<https://quarto.org/docs/publishing/>). A website could therefore easily contain the reports as well as other pages related to methodology (e.g. creation of UTM grids), extra material (e.g. extra pictures), background, blog ... of the project. Furthermore, the website could be updated once new data, literature ... comes available. In turn, this could entice additional individuals to participate in the project.
+
+# WP2: Literature study {#sec-WP2}
 
 ## Task 2.1
 
@@ -116,7 +121,7 @@ A comprehensive report would be the main output of the project. More specificall
 
 ## Task 2.3
 
-# WP3: Data management
+# WP3: Data management {#sec-WP3}
 
 ## Task 3.1
 
@@ -124,7 +129,7 @@ A comprehensive report would be the main output of the project. More specificall
 
 ## Task 3.3
 
-# WP4: Data processing and synthesis
+# WP4: Data processing and synthesis {#sec-WP4}
 
 ## Task 4.1
 
