@@ -1,0 +1,142 @@
+---
+title: "Investigating Land and Freshwater Mollusc Diversity and Distribution in Gran Canaria, Spain"
+subtitle: "Project description and planning"
+author: "Ward Langeraert"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-location: left
+bibliography: [references.bib]
+csl: american-psychological-association-7th-edition.csl
+---
+
+```{r, include=FALSE}
+library(knitr)
+library(here)
+opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+opts_knit$set(root.dir = here::here())
+
+library(kableExtra)
+```
+
+# Introduction
+
+## Background
+
+Canary Islands (Spain) is an archipelago off the coast of northwest Africa. Gran Canaria is the third-largest island and located in the centre of the archipelago [@troll2016geology]. The island contains a number of endemic land snail species [e.g. @nunez2010silvestres]. Freshwater molluscs are of lesser significance, but are also present. Research on land and freshwater molluscs of the Canaries mainly goes back to the 19th century with the famous works of @webb1833synopsis, Shuttleworth [-@shuttleworth1852diagnoseneiniger; -@shuttleworth1852diagnosenneuer], @mousson1873revision, @wollaston1878testacea, @mabille1884materiaux, @odhner1931beitrage, and others. Recent checklists are available [@groh1985landschnecken; @bank2002catalogue; @nunez2010silvestres] (see also <https://www.malacowiki.org/>) as well as a limited number of more recent papers on specific taxa. Nevertheless, taxonomic research is still largely based on these old works and many species have never been found again since their description, or the ecology or proper range is not known. This, together with the threats of global warming [@luque2013temperature] and the increase of demographic and touristic pressure [@ibanez1997distribution], could have (and probably already has) detrimental consequences for the survival of these species on the island (see also the assessments of IUCN Red List of Threatened Species (<https://www.iucnredlist.org/>)). Therefore, there is an urgent need for information on ecology, distribution and taxonomy. We hope that this dataset of land and freshwater snail occurrences can contribute to the knowledge on these species and ensure their survival on Gran Canaria and the Canary Islands as a whole.
+
+## Objectives {#sec-objectives}
+
+The primary objective of this research project is to investigate the diversity and distribution of land and freshwater molluscs in Gran Canaria. Specifically, the project aims to:
+
+1.  Conduct a literature study on the diversity and distribution of land and freshwater molluscs of Gran Canaria
+2.  Identify the species present in Gran Canaria
+3.  Determine the distribution of each species and identify gaps in current knowledge
+4.  Provide a template for similar research in the other Canary Islands
+
+## Methodology
+
+In this manuscript we provide an overview and timeline of the work packages and tasks needed to complete the objectives described above. We identify the following work packages (WPs).
+
+WP1: Communication and networking\
+WP2: Literature study\
+WP3: Data management\
+WP4: Data processing and synthesis
+
+These will be split in distinct tasks with a chronological order. No absolute time management will be made as this is merely a hobby. Finishing the tasks in chronological order will however improve progress of the project throughout time (@tbl-worktab).
+
+```{r}
+#| label: tbl-worktab
+#| tbl-cap: "Overview of work packages and tasks" 
+
+tasks_per_wp <- c(3, 3, 3, 7)
+wp_df <- data.frame(
+  work_package = rep(c("WP1", "WP2", "WP3", "WP4"), tasks_per_wp),
+  tasknr = paste0("Task ", rep(1:length(tasks_per_wp), tasks_per_wp), 
+                  ".", unlist(lapply(tasks_per_wp, seq_len))),
+  task = c("Create questionaire for contributers and interested parties", 
+           "Make dataset of contributer details", 
+           "Expected and possible outcomes", 
+           "dataset", "zotero", "literature study",
+           "photos", "data management plan", "data quality",
+           "species list", "synonyms", "morphology", "ecology", "literature", 
+           "photos", "distribution")
+)
+
+wp_df |>
+  kable(col.names = c("Work package", "Task", "")) |>
+  kable_classic(full_width = F, html_font = "Cambria")
+```
+
+# WP1: Communication and networking
+
+## Task 1.1 Create questionaire for contributers and interested parties {#sec-task1_1}
+
+A lot of data and knowledge is in hands of amateur malacologists and private collections. Therefore, it is useful to know who can and wants to contribute to this project. This could be for example by sharing of data, literature, review of reports/papers etc. Even for people who are currently not interested to contribute or who might be interested in the future, it would be useful to have contact details. Obtaining correct contact details of everyone is also important so that everyone gets the appropriate recognition for the work they provided.\
+The idea would be to create a short questionnaire asking people to provide their basic contact details: `name`, `e-mail`, `adress` (optional) and `telephone number` (optional). In a second part we can ask how they want to stay informed on the project: `not at all`, `I want to be informed about interesting discoveries and intermediate results`. Thirdly, we can ask which contribution role they would like to play: `no role`, `contribute data`, `review reports/papers written in the light of this project`, `discuss and exchange literature`. In the end it must be clarified that a contribution in any for is very much appreciated and that everyone gets the appropriate recognition for this. It is also possible to be a coauthor.\
+The questionaire will be created with [Google Forms](https://www.google.com/intl/en/forms/about/). We will ensure that the data collected from users is used appropriately, and their privacy and confidentiality are respected. Therefore we need to be upfront about how the data will be used and who will have access to it. Make sure users understand what information they are sharing, why it's being collected, and how it will be used. Make sure users give their informed consent to share their data, and clearly communicate how they can opt-out if they change their mind.
+
+## Task 1.2 Make dataset of contributer details
+
+To keep of track of everyone who has contributed in the past or wants to contribute in the future, the data from [task 1.1](#sec-task1_1) should be stored in a clean dataset. This to ensure that everyone gets the recognition they deserve even if it happened a long time ago.  
+The dataset will be created with [Google Sheets](https://www.google.com/sheets/about/).
+
+## Task 1.3 Expected and possible outcomes
+
+There are three categories of possible outputs for this project.
+
+1. Separate scientific papers
+2. Full scale report
+3. Miscellaneous
+   - Website
+   - Blog
+   - ...
+
+### Separate scientific papers
+
+Papers on specific discoveries can be published in malacological journals. These would be mainly ancillary papers related to the project, but not essential to the main goals. [Elona](https://elona-journal-malacology.blogspot.com/) is a digital journal on marine and continental Malacology in the Iberian Peninsula. The [Iberus](https://www.soesma.es/publicaciones/) journal of the Sociedad Española de Malacología and the Instituto Português de Malacologia. Any other non-Spanish journal is also an option (e.g. [Basteria](https://www.spirula.nl/basteria-engels/)). These papers will be written according to the guidelines of the intended journal.
+
+### Full scale report
+
+A comprehensive report would be the main output of the project. More specifically, these 
+
+### Miscellaneous
+
+
+# WP2: Literature study
+
+## Task 2.1
+
+## Task 2.2
+
+## Task 2.3
+
+# WP3: Data management
+
+## Task 3.1
+
+## Task 3.2
+
+## Task 3.3
+
+# WP4: Data processing and synthesis
+
+## Task 4.1
+
+## Task 4.2
+
+## Task 4.3
+
+## Task 4.4
+
+## Task 4.5
+
+## Task 4.6
+
+
+# References
