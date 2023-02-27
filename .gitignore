@@ -4,6 +4,7 @@
 .Ruserdata
 
 data/*
+*_files/
 
 *.html
 project_description.Rmd
