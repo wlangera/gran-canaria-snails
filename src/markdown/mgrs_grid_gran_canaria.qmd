@@ -2,14 +2,12 @@
 title: "Create reference grid Gran Canaria"
 author: "Ward Langeraert"
 date: "`r Sys.Date()`"
-output:
-  html_document:
-      code_folding: hide
-      toc: true
-      toc_float: true
-      toc_collapsed: true
-  editor_options:
-      chunk_output_type: console
+format:
+  html:
+    toc: true
+    toc-location: left
+bibliography: [references.bib]
+csl: american-psychological-association-7th-edition.csl
 ---
 
 ```{r setup, include=FALSE}
