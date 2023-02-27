@@ -54,16 +54,19 @@ These will be split in distinct tasks with a chronological order. No absolute ti
 #| label: tbl-worktab
 #| tbl-cap: "Overview of work packages and tasks" 
 
-tasks_per_wp <- c(3, 3, 3, 7)
+tasks_per_wp <- c(3, 3, 4, 8)
 wp_df <- data.frame(
   work_package = rep(c("WP1", "WP2", "WP3", "WP4"), tasks_per_wp),
   tasknr = paste0("Task ", rep(1:length(tasks_per_wp), tasks_per_wp), 
                   ".", unlist(lapply(tasks_per_wp, seq_len))),
   task = c("Create questionaire for contributers and interested parties", 
            "Make dataset of contributer details", 
-           "List of expected and possible outcomes", 
-           "dataset", "zotero", "literature study",
-           "photos", "data management plan", "data quality",
+           "List of expected and possible outcomes",
+           "Create dataset of related literature",
+           "Perform literature review", 
+           "Write taxon-focused literature review",
+           "photos", "occurrence data", "data management plan", "data quality",
+           "analyses and version control",
            "species list", "synonyms", "morphology", "ecology", "literature", 
            "photos", "distribution")
 )
@@ -75,7 +78,7 @@ wp_df |>
 
 # WP1: Communication and networking {#sec-WP1}
 
-## Task 1.1 Create questionaire for contributers and interested parties {#sec-task1_1}
+## Task 1.1: Create questionaire for contributers and interested parties {#sec-task1_1}
 
 A lot of data and knowledge is in hands of amateur malacologists and private collections. Therefore, it is useful to know who can and wants to contribute to this project. This could be for example by sharing of data, literature, review of reports/papers etc. Even for people who are currently not interested to contribute or who might be interested in the future, it would be useful to have contact details. Obtaining correct contact details of everyone is also important so that everyone gets the appropriate recognition for the work they provided.\
 The idea would be to create a short questionnaire asking people to provide their basic contact details: `name`, `e-mail`, `adress` (optional) and `telephone number` (optional). In a second part we can ask how they want to stay informed on the project: `not at all`, `I want to be informed about interesting discoveries and intermediate results`. Thirdly, we can ask which contribution role they would like to play: `no role`, `contribute data`, `review reports/papers written in the light of this project`, `discuss and exchange literature`. In the end it must be clarified that a contribution in any for is very much appreciated and that everyone gets the appropriate recognition for this. It is also possible to be a coauthor.\
@@ -88,20 +91,20 @@ The dataset will be created with [Google Sheets](https://www.google.com/sheets/a
 
 ## Task 1.3 List of expected and possible outcomes
 
-There are three categories of possible outputs for this project.
+This task is performed here. There are three categories of possible outputs for this project.
 
 1. Separate scientific papers
 2. Full scale report
 3. Website
 
-### Separate scientific papers
+### 1. Separate scientific papers
 
 Papers on specific discoveries or topics can be published in malacological journals. These would be mainly ancillary papers related to the project, but not essential to the main goals. [Elona](https://elona-journal-malacology.blogspot.com/) is a digital journal on marine and continental Malacology in the Iberian Peninsula. The [Iberus](https://www.soesma.es/publicaciones/) journal of the Sociedad Española de Malacología and the Instituto Português de Malacologia. Any other non-Spanish journal is also an option (e.g. [Basteria](https://www.spirula.nl/basteria-engels/)).  
 These papers will be written according to the guidelines of the intended journal.
 
-### Full scale report
+### 2. Full scale report
 
-A comprehensive report would be the main output of the project. More specifically, there would be two main reports.
+A comprehensive report would be the main output of the project. More specifically, there would be two separate reports.
 
 1. Literature study (@sec-WP2)
 2. Species descriptions (@sec-WP4)
@@ -109,39 +112,45 @@ A comprehensive report would be the main output of the project. More specificall
 These will be written as HTML [Quarto Books](https://quarto.org/docs/books/) in RStudio [@RStudio2022]. This creates a very flexible output format for future adaptations especially in combination with version control (@sec-WP4).  
 These reports could be published as books, scientific papers or on a website (see further).
 
-### Website
+### 3. Website
 
 Essentially, HTML books are a specific form of [Quarto Websites](https://quarto.org/docs/websites/), meaning that they have the same capabilities as regular websites. There are several possibilities to publish Quarto Websites (<https://quarto.org/docs/publishing/>). A website could therefore easily contain the reports as well as other pages related to methodology (e.g. creation of UTM grids), extra material (e.g. extra pictures), background, blog ... of the project. Furthermore, the website could be updated once new data, literature ... comes available. In turn, this could entice additional individuals to participate in the project.
 
 # WP2: Literature study {#sec-WP2}
 
-## Task 2.1
+## Task 2.1: Create dataset of related literature
 
-## Task 2.2
+## Task 2.2: Perform literature review
 
-## Task 2.3
+## Task 2.3: Write taxon-focused literature review
 
 # WP3: Data management {#sec-WP3}
 
-## Task 3.1
+## Task 3.1:
 
-## Task 3.2
+## Task 3.2:
 
-## Task 3.3
+## Task 3.3:
+
+## Task 3.4:
 
 # WP4: Data processing and synthesis {#sec-WP4}
 
-## Task 4.1
+## Task 4.1:
 
-## Task 4.2
+## Task 4.2:
 
-## Task 4.3
+## Task 4.3:
 
-## Task 4.4
+## Task 4.4:
 
-## Task 4.5
+## Task 4.5:
 
-## Task 4.6
+## Task 4.6:
+
+## Task 4.7:
+
+## Task 4.8:
 
 
 # References
