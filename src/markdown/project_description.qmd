@@ -54,7 +54,7 @@ These will be split in distinct tasks with a chronological order. No absolute ti
 #| label: tbl-worktab
 #| tbl-cap: "Overview of work packages and tasks" 
 
-tasks_per_wp <- c(3, 3, 4, 8)
+tasks_per_wp <- c(3, 5, 4, 8)
 wp_df <- data.frame(
   work_package = rep(c("WP1", "WP2", "WP3", "WP4"), tasks_per_wp),
   tasknr = paste0("Task ", rep(1:length(tasks_per_wp), tasks_per_wp), 
@@ -62,9 +62,11 @@ wp_df <- data.frame(
   task = c("Create questionaire for contributers and interested parties", 
            "Make dataset of contributer details", 
            "List of expected and possible outcomes",
-           "Create dataset of related literature",
-           "Perform literature review", 
-           "Write taxon-focused literature review",
+           "Search for relevant sources",
+           "Organize the sources", 
+           "Evaluate and synthesize the sources",
+           "Write comprehensive literature review",
+           "Write literature report",
            "photos", "occurrence data", "data management plan", "data quality",
            "analyses and version control",
            "species list", "synonyms", "morphology", "ecology", "literature", 
@@ -160,15 +162,15 @@ We also add fields concerning source topics and which type of information about 
 
 The final column `taxa` contains the taxa from Gran Canaria mentioned in each paper. Each taxon from the same paper is separated by the pipe symbol |.
 
-## Task 2.5: Write comprehensive literature review
+## Task 2.4: Write comprehensive literature review
 
 We read every source and write out a Quarto Document where we write paragraphs about source information, research objective, problem or gap addressed, findings and conclusions, limitations or weaknesses, implications or suggestions future research and how our research is related to the paper. We can also list for each source the True fields and the taxa from the dataset from @sec-task23.  
 This and the previous task can be performed parallel to each other and also provide feedback to each other.  
 This review can be published on the website.
 
-## Task 2.6: Write literature report
+## Task 2.5: Write literature report
 
-Finally, we create a concise but complete literature report for publication. It is a summary of the previous task and contains graphs (e.g. for visualizing trends in literature topics and frequencies) and tables [cf. @groh2012bibliography].
+Finally, we create a concise but complete literature report for publication. It is a summary of the previous task and contains graphs (e.g. for visualizing trends in literature topics and frequencies) and tables [cf. @groh2012bibliography]. It will also contain a list of all the encountered taxa with an indication if the name is still valid or not.
 
 # WP3: Data management {#sec-WP3}
 
