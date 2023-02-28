@@ -68,7 +68,7 @@ wp_df <- data.frame(
            "Write comprehensive literature review",
            "Write literature report",
            "photos", "occurrence data", "data management plan", "data quality",
-           "analyses and version control",
+           "Use version control for reproducibility",
            "species list", "synonyms", "morphology", "ecology", "literature", 
            "photos", "distribution")
 )
@@ -80,10 +80,11 @@ wp_df |>
 
 # WP1: Communication and networking {#sec-WP1}
 
+A lot of data and knowledge is in hands of amateur malacologists and private collections. Therefore, it is useful to know who can and wants to contribute to this project. This could be for example by sharing of data, literature, review of reports/papers etc. Even for people who are currently not interested to contribute or who might be interested in the future, it would be useful to have contact details. Obtaining correct contact details of everyone is also important so that everyone gets the appropriate recognition for the work they provided.
+
 ## Task 1.1: Create questionaire for contributers and interested parties {#sec-task11}
 
-A lot of data and knowledge is in hands of amateur malacologists and private collections. Therefore, it is useful to know who can and wants to contribute to this project. This could be for example by sharing of data, literature, review of reports/papers etc. Even for people who are currently not interested to contribute or who might be interested in the future, it would be useful to have contact details. Obtaining correct contact details of everyone is also important so that everyone gets the appropriate recognition for the work they provided.\
-The idea would be to create a short questionnaire asking people to provide their basic contact details: `name`, `e-mail`, `adress` (optional) and `telephone number` (optional). In a second part we can ask how they want to stay informed on the project: `not at all`, `I want to be informed about interesting discoveries and intermediate results`. Thirdly, we can ask which contribution role they would like to play: `no role`, `contribute data`, `review reports/papers written in the light of this project`, `discuss and exchange literature`. In the end it must be clarified that a contribution in any for is very much appreciated and that everyone gets the appropriate recognition for this. It is also possible to be a coauthor.\
+We would create a short questionnaire asking people to provide their basic contact details: `name`, `e-mail`, `adress` (optional) and `telephone number` (optional). In a second part we can ask how they want to stay informed on the project: `not at all`, `I want to be informed about interesting discoveries and intermediate results`. Thirdly, we can ask which contribution role they would like to play: `no role`, `contribute data`, `review reports/papers written in the light of this project`, `discuss and exchange literature`. In the end it must be clarified that a contribution in any for is very much appreciated and that everyone gets the appropriate recognition for this. It is also possible to be a coauthor.\
 The questionaire will be created with [Google Forms](https://www.google.com/intl/en/forms/about/). We will ensure that the data collected from users is used appropriately, and their privacy and confidentiality are respected. Therefore we need to be upfront about how the data will be used and who will have access to it. Make sure users understand what information they are sharing, why it's being collected, and how it will be used. Make sure users give their informed consent to share their data, and clearly communicate how they can opt-out if they change their mind.
 
 ## Task 1.2 Make dataset of contributer details {#sec-task12}
@@ -186,7 +187,7 @@ Finally, we create a concise but complete literature report for publication. It 
 
 # WP4: Data processing and synthesis {#sec-WP4}
 
-## Task 4.1: {#sec-task41}
+## Task 4.1: Use version control for reproducibility {#sec-task41}
 
 ## Task 4.2: {#sec-task42}
 
