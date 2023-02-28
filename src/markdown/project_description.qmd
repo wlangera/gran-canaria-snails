@@ -152,11 +152,13 @@ Species checklists: These papers provide a comprehensive list of species found i
   
 Unpublished sources: These papers include reports, theses, dissertations, or other research outputs that have not been formally published in peer-reviewed journals or books. They may be available in institutional repositories, conference proceedings, or other online platforms.
   
+Grey literature: The body of documents and materials that are produced outside of traditional publishing channels and are not commercially published. This includes reports, theses, dissertations, conference proceedings, working papers, government documents, and other types of unpublished or non-peer-reviewed material.  
+  
 Online sources: These papers include a variety of digital resources available on the internet, such as online databases, citizen science platforms, or social media. They may contain ecological data, maps, photographs, or other multimedia content.
   
 We also add fields concerning source topics and which type of information about snails is given:
 
-- source categories: `empirical`, `review`, `theoretical`, `methodological`, `applied`, `historical`, `species_checklist`, `unpublished`, `online`
+- source categories: `empirical`, `review`, `theoretical`, `methodological`, `applied`, `historical`, `species_checklist`, `unpublished`, `grey`, `online`
 - topic: `systematics`, `genetics`, `ecology`, `biogeography`
 - snail characteristics: `fossil`, `recent`, `land`, `freshwater`, `shell_morphology`, `external_morphology`, `anatomy`, `figured`, `distribution`
 
