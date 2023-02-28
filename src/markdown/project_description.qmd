@@ -78,7 +78,7 @@ wp_df |>
 
 # WP1: Communication and networking {#sec-WP1}
 
-## Task 1.1: Create questionaire for contributers and interested parties {#sec-task1_1}
+## Task 1.1: Create questionaire for contributers and interested parties {#sec-task11}
 
 A lot of data and knowledge is in hands of amateur malacologists and private collections. Therefore, it is useful to know who can and wants to contribute to this project. This could be for example by sharing of data, literature, review of reports/papers etc. Even for people who are currently not interested to contribute or who might be interested in the future, it would be useful to have contact details. Obtaining correct contact details of everyone is also important so that everyone gets the appropriate recognition for the work they provided.\
 The idea would be to create a short questionnaire asking people to provide their basic contact details: `name`, `e-mail`, `adress` (optional) and `telephone number` (optional). In a second part we can ask how they want to stay informed on the project: `not at all`, `I want to be informed about interesting discoveries and intermediate results`. Thirdly, we can ask which contribution role they would like to play: `no role`, `contribute data`, `review reports/papers written in the light of this project`, `discuss and exchange literature`. In the end it must be clarified that a contribution in any for is very much appreciated and that everyone gets the appropriate recognition for this. It is also possible to be a coauthor.\
@@ -86,7 +86,7 @@ The questionaire will be created with [Google Forms](https://www.google.com/intl
 
 ## Task 1.2 Make dataset of contributer details
 
-To keep of track of everyone who has contributed in the past or wants to contribute in the future, the data from [task 1.1](#sec-task1_1) should be stored in a clean dataset. This to ensure that everyone gets the recognition they deserve even if it happened a long time ago.  
+To keep of track of everyone who has contributed in the past or wants to contribute in the future, the data from [task 1.1](#sec-task11) should be stored in a clean dataset. This to ensure that everyone gets the recognition they deserve even if it happened a long time ago.  
 The dataset will be created with [Google Sheets](https://www.google.com/sheets/about/).
 
 ## Task 1.3 List of expected and possible outcomes
@@ -118,11 +118,57 @@ Essentially, HTML books are a specific form of [Quarto Websites](https://quarto.
 
 # WP2: Literature study {#sec-WP2}
 
-## Task 2.1: Create dataset of related literature
+We perform a critical analysis and synthesis of academic sources on the land and freshwater molluscs of Gran Canaria.  The main goal is to publish an overview of all available literature but also summarize these papers. This will in turn inform the research questions and methodology of this project.
 
-## Task 2.2: Perform literature review
+## Task 2.1: Search for relevant sources
 
-## Task 2.3: Write taxon-focused literature review
+We will conduct a comprehensive search for academic sources, including books, journal articles, conference proceedings, and other relevant publications through a variety of databases (e.g. [Biodiversity Heritage Library](https://www.biodiversitylibrary.org/)), search engines (e.g. [Google Scholar](https://scholar.google.com/)), and keywords to ensure that you have a wide range of sources. A collection of usefull references related to the Macaronesian malacofauna can be found in @hemmen1989bibliographia and @bank2002catalogue.
+
+## Task 2.2: Organize the sources
+
+We make a dataset in Google Sheets of all sources. The first column `key` contains a unique identifier which will also be the key for citing this reference. The next columns are related to the [BibTeX](https://en.wikipedia.org/wiki/BibTeX) reference management software for formatting lists of references. First a column `type` which specifies the entry type (e.g. book, article, incollection, misc). The other columns are the fields related to the respective entry type (e.g. author, year, url, publisher, note).  
+We write a script to convert this dataset to a .bib file to use for citing in texts. All analyses are done in with R in RStudio [@R2022; @RStudio2022] as [Quarto Documents](https://quarto.org/docs/output-formats/html-basics.html) (see methodology @sec-WP4). There are possibly already packages which can do this (e.g. [tbeptools](https://tbep-tech.github.io/tbeptools/reference/anlz_refs.html)).
+
+## Task 2.3: Evaluate and synthesize the sources  {#sec-task23}
+
+We make a dataset in Google Sheets of all sources. The first column `key` contains a unique identifier which will also be the key for citing this reference. The next columns are Boolean fields (True/False) group the sources according to common themes or topics.  
+We distinguish the following categories of scientific sources:  
+  
+Empirical studies: These papers report on original research that involves collecting and analyzing data from field or laboratory experiments, observations, or surveys. They often include statistical analysis to test hypotheses or explore relationships between variables.  
+  
+Review papers: These papers provide a critical overview of the current state of knowledge on a particular ecological topic or research question. They typically summarize and synthesize findings from multiple studies and identify gaps, controversies, and future directions for research.    
+  
+Theoretical papers: These papers develop and test conceptual models, frameworks, or hypotheses related to ecological processes, interactions, or patterns. They often use mathematical or simulation models to explore theoretical scenarios or make predictions.  
+  
+Methodological papers: These papers describe and evaluate new or improved methods, techniques, or tools for ecological research, data analysis, or monitoring. They may involve field or laboratory experiments, statistical analyses, or software development.  
+  
+Applied papers: These papers focus on the practical application of ecological research to real-world problems, such as conservation, management, policy, or restoration. They often involve interdisciplinary collaboration and the integration of ecological, social, and economic considerations.  
+  
+Historical papers: These papers explore the historical context, evolution, and impact of ecological ideas, theories, or research methods. They may involve analysis of archival data, literature review, or oral history interviews.  
+  
+Species checklists: These papers provide a comprehensive list of species found in a particular geographic region, habitat, or taxonomic group. They often include information on the scientific and common names of the species, their ecological characteristics, and their conservation status. 
+  
+Unpublished sources: These papers include reports, theses, dissertations, or other research outputs that have not been formally published in peer-reviewed journals or books. They may be available in institutional repositories, conference proceedings, or other online platforms.
+  
+Online sources: These papers include a variety of digital resources available on the internet, such as online databases, citizen science platforms, or social media. They may contain ecological data, maps, photographs, or other multimedia content.
+  
+We also add fields concerning source topics and which type of information about snails is given:
+
+- source categories: `empirical`, `review`, `theoretical`, `methodological`, `applied`, `historical`, `species_checklist`, `unpublished`, `online`
+- topic: `systematics`, `genetics`, `ecology`, `biogeography`
+- snail characteristics: `fossil`, `recent`, `land`, `freshwater`, `shell_morphology`, `external_morphology`, `anatomy`, `figured`, `distribution`
+
+The final column `taxa` contains the taxa from Gran Canaria mentioned in each paper. Each taxon from the same paper is separated by the pipe symbol |.
+
+## Task 2.5: Write comprehensive literature review
+
+We read every source and write out a Quarto Document where we write paragraphs about source information, research objective, problem or gap addressed, findings and conclusions, limitations or weaknesses, implications or suggestions future research and how our research is related to the paper. We can also list for each source the True fields and the taxa from the dataset from @sec-task23.  
+This and the previous task can be performed parallel to each other and also provide feedback to each other.  
+This review can be published on the website.
+
+## Task 2.6: Write literature report
+
+Finally, we create a concise but complete literature report for publication. It is a summary of the previous task and contains graphs (e.g. for visualizing trends in literature topics and frequencies) and tables [cf. @groh2012bibliography].
 
 # WP3: Data management {#sec-WP3}
 
