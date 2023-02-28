@@ -147,6 +147,8 @@ Methodological papers: These papers describe and evaluate new or improved method
   
 Applied papers: These papers focus on the practical application of ecological research to real-world problems, such as conservation, management, policy, or restoration. They often involve interdisciplinary collaboration and the integration of ecological, social, and economic considerations.  
   
+Data papers: Peer reviewed documents that describe a particular dataset or collection of datasets. The primary purpose of a data paper is to provide a comprehensive description of the data to facilitate their reuse and replication by other researchers.  
+  
 Historical papers: These papers explore the historical context, evolution, and impact of ecological ideas, theories, or research methods. They may involve analysis of archival data, literature review, or oral history interviews.  
   
 Species checklists: These papers provide a comprehensive list of species found in a particular geographic region, habitat, or taxonomic group. They often include information on the scientific and common names of the species, their ecological characteristics, and their conservation status. 
@@ -159,7 +161,7 @@ Online sources: These papers include a variety of digital resources available on
   
 We also add fields concerning source topics and which type of information about snails is given:
 
-- source categories: `empirical`, `review`, `theoretical`, `methodological`, `applied`, `historical`, `species_checklist`, `unpublished`, `grey`, `online`
+- source categories: `empirical`, `review`, `theoretical`, `methodological`, `applied`, `historical`, `data_paper`, `species_checklist`, `unpublished`, `grey`, `online`
 - topic: `systematics`, `genetics`, `ecology`, `biogeography`
 - snail characteristics: `fossil`, `recent`, `land`, `freshwater`, `shell_morphology`, `external_morphology`, `anatomy`, `figured`, `distribution`
 
