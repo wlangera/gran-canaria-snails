@@ -209,11 +209,10 @@ This and the following task are highly based on the methods described in @langer
 2. Final dataset:
    The final occurrence dataset is exported as a CSV-file (*.csv).
 
-## Task 3.4: Data quality and validation {#sec-task34}
+## Task 3.4: Data validation {#sec-task34}
 
-Before 
-https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html
-https://rich-iannone.github.io/pointblank/
+Before using the data for any analyses or publications, we need to validate the data. This 
+refers to the process of verifying the accuracy and consistency of the data. In R this can be done with the packages **[validate](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html)** and **[pointblank](https://rich-iannone.github.io/pointblank/)**. 
 
 # WP4: Data processing and synthesis {#sec-WP4}
 
