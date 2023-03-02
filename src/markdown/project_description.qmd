@@ -179,13 +179,26 @@ Finally, we create a concise but complete literature report for publication. It 
 
 # WP3: Data management {#sec-WP3}
 
-## Task 3.1: {#sec-task31}
+The data for this research project will include field survey data (location, date, species name ...) and pictures of livings snails, empty shells and locations. All data is backed up to the cloud by syncing with Google Drive.
 
-## Task 3.2: {#sec-task32}
+## Task 3.1: Create picture database {#sec-task31}
 
-## Task 3.3: {#sec-task33}
+We store pictures in three folders:
 
-## Task 3.4: {#sec-task34}
+- living snails
+- empty shells
+- pictures of survey locations and habitats
+
+A Google sheet is made in each folder which links pictures to meta data on precise location, time, remarks ...
+
+## Task 3.2: Create occurrence database {#sec-task32}
+
+identification etc.
+
+## Task 3.3: Data quality and validation {#sec-task33}
+
+https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html
+https://rich-iannone.github.io/pointblank/
 
 # WP4: Data processing and synthesis {#sec-WP4}
 
