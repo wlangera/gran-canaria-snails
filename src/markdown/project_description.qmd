@@ -28,7 +28,7 @@ library(kableExtra)
 
 ## Background {#sec-background}
 
-Canary Islands (Spain) is an archipelago off the coast of northwest Africa. Gran Canaria is the third-largest island and located in the centre of the archipelago [@troll2016geology]. The island contains a number of endemic land snail species [e.g. @nunez2010silvestres]. Freshwater molluscs are of lesser significance, but are also present. Research on land and freshwater molluscs of the Canaries mainly goes back to the 19th century with the famous works of @webb1833synopsis, Shuttleworth [-@shuttleworth1852diagnoseneiniger; -@shuttleworth1852diagnosenneuer], @mousson1873revision, @wollaston1878testacea, @mabille1884materiaux, @odhner1931beitrage, and others. Recent checklists are available [@groh1985landschnecken; @bank2002catalogue; @nunez2010silvestres] (see also <https://www.malacowiki.org/>) as well as a limited number of more recent papers on specific taxa. Nevertheless, taxonomic research is still largely based on these old works and many species have never been found again since their description, or the ecology or proper range is not known. This, together with the threats of global warming [@luque2013temperature] and the increase of demographic and touristic pressure [@ibanez1997distribution], could have (and probably already has) detrimental consequences for the survival of these species on the island (see also the assessments of IUCN Red List of Threatened Species (<https://www.iucnredlist.org/>)). Therefore, there is an urgent need for information on ecology, distribution and taxonomy. We hope that this dataset of land and freshwater snail occurrences can contribute to the knowledge on these species and ensure their survival on Gran Canaria and the Canary Islands as a whole.
+Canary Islands (Spain) is an archipelago off the coast of northwest Africa. Gran Canaria is the third-largest island and located in the centre of the archipelago [@troll2016geology]. The island contains a number of endemic land snail species [e.g. @nunez2010silvestres]. Freshwater molluscs are of lesser significance, but are also present. Research on land and freshwater molluscs of the Canaries mainly goes back to the 19th century with the famous works of @webb1833synopsis, Shuttleworth [-@shuttleworth1852diagnoseneiniger; -@shuttleworth1852diagnosenneuer], @mousson1873revision, @wollaston1878testacea, @mabille1884materiaux, @odhner1931beitrage, and others. Recent checklists are available [@groh1985landschnecken; @bank2002catalogue; @nunez2010silvestres] (see also <https://www.malacowiki.org/>) as well as a limited number of more recent papers on specific taxa. Nevertheless, taxonomic research is still largely based on these old works and many species have never been found again since their description, or the ecology or proper range is not known. This, together with the threats of global warming [@luque2013temperature] and the increase of demographic and touristic pressure [@ibanez1997distribution], could have (and probably already has) detrimental consequences for the survival of these species on the island (see also the assessments of IUCN Red List of Threatened Species (<https://www.iucnredlist.org/>)). Therefore, there is an urgent need for information on ecology, distribution and taxonomy.
 
 ## Objectives {#sec-objectives}
 
@@ -67,10 +67,18 @@ wp_df <- data.frame(
            "Evaluate and synthesize the sources",
            "Write comprehensive literature review",
            "Write literature report",
-           "photos", "occurrence data", "data management plan", "data quality",
+           "Create picture database", 
+           "Create occurrence dataset",
+           "Standardize occurrence dataset",
+           "Data validation",
            "Use version control for reproducibility",
-           "species list", "synonyms", "morphology", "ecology", "literature", 
-           "photos", "distribution")
+           "species list", 
+           "synonyms", 
+           "morphology",
+           "ecology",
+           "literature", 
+           "photos",
+           "distribution")
 )
 
 wp_df |>
@@ -191,18 +199,18 @@ We store pictures in three folders:
 
 A Google Sheet is made in each folder which links pictures to meta data on precise location, time, remarks ...
 
-## Task 3.2: Create occurrence database {#sec-task32}
+## Task 3.2: Create occurrence dataset {#sec-task32}
 
 This and the following task are highly based on the methods described in @langeraert2020newrecords. For the moment, we will start with the data from my own collection and the collection obtained from Peter Tattersfield. This, because I could check species identifications myself and they are based on the same literature and reference material. Furthermore, coordinates are provided with the locations and coordinate precision is known or can be correctly derived. In a next step, the data from @wall2018bellwether could be added and used to check of our own data is in line with their research.
 
 1. Field work:
-   Species name, date, location, organism quantity, and additional remarks are noted in the field in a field notebook or entered in the app ObsMapp (<https://observation.org/apps/obsmapp/>).
+   Species name, date, location, organism quantity, and additional remarks are noted in the field in a field notebook or entered in the app [ObsMapp](https://observation.org/apps/obsmapp/).
 2. Species identifications:
    Final identifications are conducted and additional information was noted on organism quantity, location, and identification remarks. For shells in collection, data is kept on a label along with each specimen. For snails not in collection, pictures were taken in the field and data could be downloaded from <https://observation.org/> (via the app ObsMapp).
 3. Occurrence dataset:
    All data are entered together as an occurrence dataset in Google Sheets.  
 
-## Task 3.3: Standardize occurrence database {#sec-task33} 
+## Task 3.3: Standardize occurrence dataset {#sec-task33} 
 
 1. Darwin Core:
    The data are standardized to Darwin Core [@wieczorek2012darwincore] using an R script based on the TrIAS Checklist Recipe [@reyserhove2018checklist] with R in RStudio. Taxonomic information is added based on the scientific name and expressed in kingdom, taxonRank, and nomenclaturalCode. Dataset metadata information is added (language, datasetID, institutionCode, datasetName) as well as a unique taxon ID (taxonID), the license, and the rights holder (rightsHolder).
